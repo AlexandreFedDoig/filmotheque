@@ -10,14 +10,14 @@ public class Film {
 
 	private String titre;
 
-	private LocalDate annee;
+	private int annee;
 
 	/**
 	 * en minutes
 	 */
 	private int duree;
 
-	private String sysnopsis;
+	private String synopsis;
 
 	private Participant realisateur;
 
@@ -38,12 +38,12 @@ public class Film {
 	 * @param duree
 	 * @param sysnopsis
 	 */
-	public Film(String titre, LocalDate annee, int duree, String sysnopsis) {
+	public Film(String titre, int annee, int duree, String synopsis) {
 		super();
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
-		this.sysnopsis = sysnopsis;
+		this.synopsis = synopsis;
 		this.acteurs = new ArrayList<>();
 		this.avis = new ArrayList<>();
 	}
@@ -64,11 +64,11 @@ public class Film {
 		this.titre = titre;
 	}
 
-	public LocalDate getAnnee() {
+	public int getAnnee() {
 		return annee;
 	}
 
-	public void setAnnee(LocalDate annee) {
+	public void setAnnee(int annee) {
 		this.annee = annee;
 	}
 
@@ -80,12 +80,12 @@ public class Film {
 		this.duree = duree;
 	}
 
-	public String getSysnopsis() {
-		return sysnopsis;
+	public String getSynopsis() {
+		return synopsis;
 	}
 
-	public void setSysnopsis(String sysnopsis) {
-		this.sysnopsis = sysnopsis;
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 
 	public Participant getRealisateur() {
