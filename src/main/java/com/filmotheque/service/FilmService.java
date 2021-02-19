@@ -7,7 +7,7 @@ import com.filmotheque.model.Avis;
 
 import com.filmotheque.model.Film;
 
-public interface DetailService {
+public interface FilmService {
 	
 
 	public Film getFilm(long id);
@@ -16,8 +16,6 @@ public interface DetailService {
 	
 	void addFilm(Film film);
 
-	Film getFilm(long id);
-	
 	void addAvis(Avis avis, long idFilm);
 	
 

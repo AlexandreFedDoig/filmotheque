@@ -22,19 +22,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.filmotheque.model.Avis;
 import com.filmotheque.model.Film;
-import com.filmotheque.service.DetailService;
+import com.filmotheque.service.FilmService;
 
 @Controller
 @RequestMapping(path="/detail")
 public class DetailController {
 
-	private DetailService service;
-
+	private FilmService service;
+	
 	@Autowired
-	public DetailController(DetailService service) {
+	public DetailController(FilmService service) {
 		this.service = service;
 	}
 
+	
 	@RequestMapping(path="/{id}")
 	public String detail(@PathVariable int id, Model model) {
 		Film f = this.service.getFilm(id);
@@ -45,28 +46,6 @@ public class DetailController {
 	}
 	
 
-	@RequestMapping(path = "/home")
-	public String home(Model model) {
-		
-		List<Film> films = this.service.getAllFilm();
-		
-		model.addAttribute("films", films);
-		
-		return "home";
-	}
-	
-	@GetMapping(path="/add-film")
-	public String formulaireFilm(@ModelAttribute("film") Film film) {
-		return "add-film";
-	}
-	
-	@PostMapping(path = "/add-film")
-	public String ajoutFilm (@ModelAttribute("film") Film film) {
-		
-		this.service.addFilm(film);
-		
-		return "redirect:/home";
-	}
 
 	@RequestMapping(path="/avis")
 	public String detail(
@@ -74,21 +53,22 @@ public class DetailController {
 			@RequestParam(required=true) String ratingText,
 			HttpServletRequest request
 			) {
+		
+		String previousPath = request.getHeader("Referer");
+		String id = previousPath.substring(previousPath.lastIndexOf('/') + 1);
 		try {
 			int finalNumber = Integer.valueOf(ratingNumber);
 			String finalText = ratingText;
 			
 			Avis a = new Avis(finalNumber, finalText);
 			
-			this.service.addAvis(a, 0);
+			this.service.addAvis(a, Long.parseLong(id));
 			
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		String previousPath = request.getHeader("Referer");
-		String id = previousPath.substring(previousPath.lastIndexOf('/') + 1);
 		
 		return "redirect:/detail/" + id;
 		
