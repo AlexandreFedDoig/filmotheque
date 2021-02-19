@@ -35,5 +35,32 @@ public class DetailServiceImpl implements DetailService {
 		
 		return f;
 	}
+	
+	@Override
+	public List<Film> getAllFilm(){
+		List<Film> films = new ArrayList<>();
+		
+		Film film1 = new Film("Film 1", 2020, 115, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		film1.setGenre(new Genre("Horreur"));
+		film1.setRealisateur(new Participant("Albert", "Dupond"));
+		films.add(film1);
+
+		Film film2 = new Film("Film 2", 2016, 109, "Morbi id malesuada ex, suscipit pulvinar nisl.");
+		film2.setGenre(new Genre("Action"));
+		film2.setRealisateur(new Participant("Frederic", "Jones"));
+		films.add(film2);
+		
+		Film film3 = new Film("Film 3", 2019, 116, "Maecenas fermentum eget elit quis viverra. Sed vel ultrices enim.");
+		film3.setGenre(new Genre("Thriller"));
+		film3.setRealisateur(new Participant("Jack", "O'Lantern"));
+		films.add(film3);
+		
+		return films;
+	}
+	
+	@Override
+	public void addFilm(Film film) {
+		this.addFilm(film);
+	}
 
 }
