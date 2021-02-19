@@ -1,9 +1,13 @@
 package com.filmotheque.service;
 
+import com.filmotheque.model.Avis;
 import com.filmotheque.model.Film;
 
 public interface DetailService {
 	
-	public Film getFilm(long id);
+	Film getFilm(long id);
+	
+	void addAvis(Avis avis, long idFilm);
+	
 
 }
