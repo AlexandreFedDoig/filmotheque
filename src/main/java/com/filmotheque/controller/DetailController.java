@@ -1,11 +1,13 @@
 package com.filmotheque.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.filmotheque.model.Avis;
 import com.filmotheque.model.Film;
@@ -22,14 +24,9 @@ public class DetailController {
 		this.service = service;
 	}
 
-	@RequestMapping(path="")
-	public String detail(Model model) {
-
-//		if(ratingNumber != null &&  ratingText != null) {
-//			System.out.println(ratingText);
-//		}
-//		
-		Film f = this.service.getFilm(0);
+	@RequestMapping(path="/{id}")
+	public String detail(@PathVariable int id, Model model) {
+		Film f = this.service.getFilm(id);
 
 		model.addAttribute("film", f);
 
@@ -39,9 +36,9 @@ public class DetailController {
 	@RequestMapping(path="/avis")
 	public String detail(
 			@RequestParam(required=true) String ratingNumber, 
-			@RequestParam(required=true) String ratingText
+			@RequestParam(required=true) String ratingText,
+			HttpServletRequest request
 			) {
-		
 		try {
 			int finalNumber = Integer.valueOf(ratingNumber);
 			String finalText = ratingText;
@@ -55,8 +52,10 @@ public class DetailController {
 			System.out.println(e.getMessage());
 		}
 		
+		String previousPath = request.getHeader("Referer");
+		String id = previousPath.substring(previousPath.lastIndexOf('/') + 1);
 		
-		return "redirect:/detail";
+		return "redirect:/detail/" + id;
 		
 	}
 	
