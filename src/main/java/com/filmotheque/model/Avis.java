@@ -1,8 +1,16 @@
 package com.filmotheque.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Avis {
 
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	private int note;
 
@@ -30,18 +38,18 @@ public class Avis {
 	 * @param note
 	 * @param label
 	 */
-	public Avis(long id, int note, String label) {
+	public Avis(Long id, int note, String label) {
 		super();
 		this.id = id;
 		this.note = note;
 		this.label = label;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
