@@ -6,4 +6,6 @@ import com.filmotheque.model.Membre;
 
 public interface MembreRepository extends JpaRepository<Membre, Long> {
 
+	Membre findUserByUsername(String username);
+
 }
