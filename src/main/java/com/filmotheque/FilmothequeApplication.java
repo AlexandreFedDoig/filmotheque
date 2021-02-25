@@ -26,8 +26,12 @@ public class FilmothequeApplication {
 	  public CommandLineRunner demo(FilmRepository filmRepository, ParticipantRepository participantRepository, GenreRepository genreRepository) {
 	    return (args) -> {
 	    Participant real = new Participant("real_nom", "réal_prenom");
+	    Participant real2 = new Participant("Deux", "réal_prenom");
+	    Participant real3 = new Participant("Trois", "réal_prenom");
 	    real = participantRepository.save(real);
-	    
+	    participantRepository.save(real2);
+	    participantRepository.save(real3);
+
 	    Genre g1 = new Genre("horreur");
 	    g1 = genreRepository.save(g1);
 	    

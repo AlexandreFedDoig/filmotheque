@@ -1,7 +1,12 @@
 package com.filmotheque.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.filmotheque.controller.modelForm.FilmForm;
+import com.filmotheque.model.Genre;
+import com.filmotheque.model.Participant;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +40,25 @@ public class AccueilController {
 	}
 
 	@GetMapping(path = "/add-film")
-	public String formulaireFilm(@ModelAttribute("film") Film film) {
+	public String formulaireFilm(Model model) {
+		List<Participant> listePartipants = service.getAllParticipants();
+		List<Genre> listeGenres = service.getAllGenres();
+
+		model.addAttribute("filmForm", new FilmForm());
+		model.addAttribute("listePartipants", listePartipants);
+		model.addAttribute("listeGenres", listeGenres);
+
 		return "add-film";
 	}
 
 	@PostMapping(path = "/add-film")
-	public String ajoutFilm(@ModelAttribute("film") Film film) {
+	public String ajoutFilm(@ModelAttribute("filmForm") FilmForm filmForm) {
+		System.out.println("Debug -------- Entrée Controller");
+		Film film = new Film();
+		BeanUtils.copyProperties(filmForm, film);
 
-		this.service.addFilm(film);
-
+		service.addFilm(film);
+		System.out.println("Debug -------- film = "+ film.toString());
 		return "redirect:/home";
 	}
 }

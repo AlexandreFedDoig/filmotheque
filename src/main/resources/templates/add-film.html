@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Ajout film</title>
@@ -21,12 +21,16 @@
 	</nav>
 	<h1>Ajouter un film</h1>
 	<form action="post"
-		th:object=${film}
+		th:object="${filmForm}"
 		th:action="@{/add-film}">
 		
 		<div class="row">
 			<div class="col-sm-3">Titre : </div>
-			<input class="col-sm-9" th:field="*{titre}"/>
+			<input class="col-sm-9" th:field="*{nom}"/>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">Synopsis : </div>
+			<input class="col-sm-9" th:field="*{synopsis}"/>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">Annee de sortie : </div>
@@ -34,9 +38,36 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-3">Durée : </div>
-			<input class="col-sm-9" th:field="*{annee}"/>
+			<input class="col-sm-9" th:field="*{duree}"/>
 		</div>
-		
+		<div class="row">
+			<div class="col-sm-3">Categorie</div>
+			<select th:field="*{genre}" class="col-sm-9">
+				<option th:each="genre : ${listeGenres}"
+						th:value="${genre.id}"
+						th:text="${genre.label}">
+				</option>
+			</select>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">Réalisateurs</div>
+			<select th:field="*{realisateur}" class="col-sm-9">
+				<option th:each="acteur : ${listePartipants}"
+						th:value="${acteur.id}"
+						th:text="${acteur.nom}">
+				</option>
+			</select>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">Acteurs</div>
+			<select th:field="*{acteurs}" class="col-sm-9" multiple>
+				<option th:each="acteur : ${listePartipants}"
+						th:value="${acteur.id}"
+						th:text="${acteur.nom}">
+				</option>
+			</select>
+		</div>
+		<input type="submit" value="Valider"/>
 	</form>
 	
 	<script
