@@ -3,6 +3,8 @@ package com.filmotheque.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.filmotheque.repository.GenreRepository;
+import com.filmotheque.repository.ParticipantRepository;
 import org.springframework.stereotype.Service;
 
 import com.filmotheque.model.Avis;
@@ -19,15 +21,21 @@ public class FilmServiceImpl implements FilmService {
 	private FilmRepository filmRepository;
 	
 	private AvisRepository avisRepository;
+
+	private ParticipantRepository participantRepository;
+
+	private GenreRepository genreRepository;
 	
 	
 	/**
 	 * @param filmRepository
 	 * @param avisRepository
 	 */
-	public FilmServiceImpl(FilmRepository filmRepository, AvisRepository avisRepository) {
+	public FilmServiceImpl(FilmRepository filmRepository, AvisRepository avisRepository, ParticipantRepository participantRepository, GenreRepository genreRepository) {
 		this.filmRepository = filmRepository;
 		this.avisRepository = avisRepository;
+		this.participantRepository = participantRepository;
+		this.genreRepository = genreRepository;
 	}
 
 
@@ -45,7 +53,20 @@ public class FilmServiceImpl implements FilmService {
 		filmRepository.save(f);
 		
 	}
-	
+
+	@Override
+	public List<Participant> getAllParticipants() {
+		List<Participant> listeParticipant = this.participantRepository.findAll();
+		return listeParticipant;
+	}
+
+	@Override
+	public List<Genre> getAllGenres() {
+		List<Genre> listeGenres = this.genreRepository.findAll();
+		return listeGenres;
+	}
+
+
 	@Override
 	public List<Film> getAllFilm(){
 		return this.filmRepository.findAll();
