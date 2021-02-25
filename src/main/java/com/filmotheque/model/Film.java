@@ -56,7 +56,7 @@ public class Film {
 	 * @param titre
 	 * @param annee
 	 * @param duree
-	 * @param sysnopsis
+	 * @param synopsis
 	 */
 	public Film(String titre, int annee, int duree, String synopsis) {
 		super();
@@ -140,4 +140,18 @@ public class Film {
 		this.genre = genre;
 	}
 
+	@Override
+	public String toString() {
+		return "Film{" +
+				"id=" + id +
+				", titre='" + titre + '\'' +
+				", annee=" + annee +
+				", duree=" + duree +
+				", synopsis='" + synopsis + '\'' +
+				", realisateur=" + realisateur +
+				", acteurs=" + acteurs +
+				", avis=" + avis +
+				", genre=" + genre +
+				'}';
+	}
 }

@@ -29,7 +29,11 @@ public class FilmothequeApplication {
 			GenreRepository genreRepository, MembreRepository membreRepository) {
 		return (args) -> {
 			Participant real = new Participant("real_nom", "réal_prenom");
-			real = participantRepository.save(real);
+	    Participant real2 = new Participant("Deux", "réal_prenom");
+	    Participant real3 = new Participant("Trois", "réal_prenom");
+	    real = participantRepository.save(real);
+	    participantRepository.save(real2);
+	    participantRepository.save(real3);
 
 			Genre g1 = new Genre("horreur");
 			g1 = genreRepository.save(g1);
@@ -50,6 +54,8 @@ public class FilmothequeApplication {
 			filmRepository.save(f1);
 			filmRepository.save(f2);
 			
+      
+      
 			
 			Membre membre = new Membre();
 			membre.setUsername("user");
