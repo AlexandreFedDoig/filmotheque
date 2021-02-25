@@ -28,33 +28,41 @@ public class FilmothequeApplication {
 	public CommandLineRunner demo(FilmRepository filmRepository, ParticipantRepository participantRepository,
 			GenreRepository genreRepository, MembreRepository membreRepository) {
 		return (args) -> {
-			Participant real = new Participant("real_nom", "réal_prenom");
-	    Participant real2 = new Participant("Deux", "réal_prenom");
-	    Participant real3 = new Participant("Trois", "réal_prenom");
-	    real = participantRepository.save(real);
-	    participantRepository.save(real2);
-	    participantRepository.save(real3);
+			Participant real = new Participant("Spielberg", "Steven");
+		    Participant acteur1 = new Participant("GOLDBLUM", "JEFF");
+		    Participant acteur2 = new Participant("L.JACKSON", "SAMUEL");
+		    real = participantRepository.save(real);
+		    participantRepository.save(acteur1);
+		    participantRepository.save(acteur2);
 
-			Genre g1 = new Genre("horreur");
+			Genre g1 = new Genre("action");
 			g1 = genreRepository.save(g1);
 
-			Genre g2 = new Genre("comique");
-			g2 = genreRepository.save(g2);
+			
 
-			Film f1 = new Film("titre1", 2000, 360,
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tortor eros, fringilla in nunc in, condimentum vehicula turpis. In sed sollicitudin tortor. Aenean finibus gravida ornare. Maecenas sed tristique nunc. Quisque finibus euismod urna. Vestibulum tincidunt, massa in ultricies vulputate, est erat bibendum tortor, a pulvinar magna eros non orci.");
+			Film f1 = new Film("Jurassic Park", 1993, 120, "Ne pas réveiller le chat qui dort... C'est ce que le milliardaire John Hammond aurait dû se rappeler avant de se lancer dans le \"clonage\" de dinosaures. C'est à partir d'une goutte de sang absorbée par un moustique fossilisé que John Hammond et son équipe ont réussi à faire renaître une dizaine d'espèces de dinosaures. Il s'apprête maintenant avec la complicité du docteur Alan Grant, paléontologue de renom, et de son amie Ellie, à ouvrir le plus grand parc à thème du monde. Mais c'était sans compter la cupidité et la malveillance de l'informaticien Dennis Nedry, et éventuellement des dinosaures, seuls maîtres sur l'île...");
 			f1.setRealisateur(real);
 			f1.setGenre(g1);
-
-			Film f2 = new Film("titre2", 2010, 120,
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tortor eros, fringilla in nunc in, condimentum vehicula turpis. In sed sollicitudin tortor. Aenean finibus gravida ornare. Maecenas sed tristique nunc. Quisque finibus euismod urna. Vestibulum tincidunt, massa in ultricies vulputate, est erat bibendum tortor, a pulvinar magna eros non orci.");
-			f2.setRealisateur(real);
-			f2.setGenre(g2);
+			f1.getActeurs().add(acteur1);
+			f1.getActeurs().add(acteur2);
 
 			filmRepository.save(f1);
-			filmRepository.save(f2);
 			
       
+			Participant p1 = new Participant("NOLAN", "CHRISTOPHER");
+		    Participant p2 = new Participant("Statham", "Jason");
+		    Participant p3 = new Participant("DIESEL", "VIN");
+		    Participant p4 = new Participant("JACKMAN", "HUGH");
+			
+		    Genre g2 = new Genre("comique");
+			g2 = genreRepository.save(g2);
+			
+			participantRepository.save(p1);
+			participantRepository.save(p2);
+			participantRepository.save(p3);
+			participantRepository.save(p4);
+			
+			
       
 			
 			Membre membre = new Membre();

@@ -32,7 +32,7 @@ public class Film {
 	 */
 	private int duree;
 	
-	@Column(length = 500)
+	@Column(length = 1500)
 	private String synopsis;
 
 	@ManyToOne
