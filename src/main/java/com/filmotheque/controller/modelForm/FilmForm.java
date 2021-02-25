@@ -8,7 +8,7 @@ import java.util.List;
 public class FilmForm {
     private Long id;
 
-    private String nom;
+    private String titre;
 
     private String synopsis;
 
@@ -25,8 +25,8 @@ public class FilmForm {
     public FilmForm() {
     }
 
-    public FilmForm(String nom, String synopsis, int annee, int duree, Long genre, Long realisateur, List<Long> acteurs) {
-        this.nom = nom;
+    public FilmForm(String titre, String synopsis, int annee, int duree, Long genre, Long realisateur, List<Long> acteurs) {
+        this.titre = titre;
         this.synopsis = synopsis;
         this.annee = annee;
         this.duree = duree;
@@ -35,9 +35,9 @@ public class FilmForm {
         this.acteurs = acteurs;
     }
 
-    public FilmForm(Long id, String nom, String synopsis, int annee, int duree, Long genre, Long realisateur, List<Long> acteurs) {
+    public FilmForm(Long id, String titre, String synopsis, int annee, int duree, Long genre, Long realisateur, List<Long> acteurs) {
         this.id = id;
-        this.nom = nom;
+        this.titre = titre;
         this.synopsis = synopsis;
         this.annee = annee;
         this.duree = duree;
@@ -54,12 +54,12 @@ public class FilmForm {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String gettitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void settitre(String titre) {
+        this.titre = titre;
     }
 
     public String getSynopsis() {
@@ -113,7 +113,7 @@ public class FilmForm {
     @Override
     public String toString() {
         return "FilmForm{" +
-                "nom='" + nom + '\'' +
+                "titre='" + titre + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", annee=" + annee +
                 ", duree=" + duree +
