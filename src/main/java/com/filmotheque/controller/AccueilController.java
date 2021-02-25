@@ -53,12 +53,10 @@ public class AccueilController {
 
 	@PostMapping(path = "/add-film")
 	public String ajoutFilm(@ModelAttribute("filmForm") FilmForm filmForm) {
-		System.out.println("Debug -------- Entrée Controller");
 		Film film = new Film();
 		BeanUtils.copyProperties(filmForm, film);
 
 		service.addFilm(film);
-		System.out.println("Debug -------- film = "+ film.toString());
 		return "redirect:/home";
 	}
 }

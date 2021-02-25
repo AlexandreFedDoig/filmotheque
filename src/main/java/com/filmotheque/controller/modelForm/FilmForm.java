@@ -1,8 +1,11 @@
 package com.filmotheque.controller.modelForm;
 
+import com.filmotheque.model.Film;
 import com.filmotheque.model.Genre;
 import com.filmotheque.model.Participant;
+import org.springframework.beans.BeanUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilmForm {
@@ -121,5 +124,32 @@ public class FilmForm {
                 ", realisateur=" + realisateur +
                 ", acteurs=" + acteurs +
                 '}';
+    }
+
+    public Film toModel (){
+        Film film = new Film();
+
+        film.setTitre(this.gettitre());
+        film.setSynopsis(this.getSynopsis());
+        film.setAnnee(this.getAnnee());
+        film.setAnnee(this.getAnnee());
+
+        Genre genre = new Genre();
+        genre.setId(this.getGenre());
+        film.setGenre(genre);
+
+        Participant real = new Participant();
+        real.setId(this.getRealisateur());
+        film.setRealisateur(real);
+
+        List<Participant> listeActeurs = new ArrayList<>();
+        for (Long acteur: this.getActeurs()) {
+            Participant participant = new Participant();
+            participant.setId(acteur);
+            listeActeurs.add(participant);
+        }
+        film.setActeurs(listeActeurs);
+
+        return film;
     }
 }
