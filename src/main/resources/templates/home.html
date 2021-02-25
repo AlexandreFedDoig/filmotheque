@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<meta charset="UTF-8">
 	<title>Accueil</title>
@@ -15,7 +15,7 @@
 				<a class="navbar-brand" href="/home">Filmothèque</a>
 					<a class="nav-link active" aria-current="page" href="/add-film">Ajouter un film</a> 
 					<a class="nav-link active" aria-current="page" href="#">Mon profil</a>
-					<a class="nav-link active" aria-current="page" href="#">se connecter</a>
+					<a class="nav-link active" aria-current="page" th:href="@{/logout}">se deconnecter</a>
 			</div>
 		</nav>
 		<h1>Liste des films</h1>
