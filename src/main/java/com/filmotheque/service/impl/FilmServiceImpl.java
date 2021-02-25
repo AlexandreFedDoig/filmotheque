@@ -74,14 +74,6 @@ public class FilmServiceImpl implements FilmService {
 	
 	@Override
 	public void addFilm(Film film) {
-		film.setRealisateur(this.participantRepository.save(film.getRealisateur()));
-		film.setGenre(this.genreRepository.save(film.getGenre()));
-		List<Participant> listeActeurs = new ArrayList<>();
-		for (Participant acteur:film.getActeurs()) {
-			listeActeurs.add(this.participantRepository.save(acteur));
-		}
-		film.setActeurs(listeActeurs);
-
 		this.filmRepository.save(film);
 	}
 

@@ -54,7 +54,7 @@ public class AccueilController {
 	@PostMapping(path = "/add-film")
 	public String ajoutFilm(@ModelAttribute("filmForm") FilmForm filmForm) {
 		Film film = new Film();
-		BeanUtils.copyProperties(filmForm, film);
+		film = filmForm.toModel();
 
 		service.addFilm(film);
 		return "redirect:/home";
